@@ -28,6 +28,13 @@
           </div>
 
         <button type="submit">Lanjut</button>
+        
+        <hr>
+
+        
+        <div class="d-flex justify-content-center">
+          Belum punya akun?&nbsp;<a href="{{ route('register') }}" class="text-decoration-none">register</a>
+      </div>
       </form>
     </div>
   </div>

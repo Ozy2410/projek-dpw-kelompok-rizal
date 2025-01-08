@@ -1,4 +1,3 @@
 <x-layout>
-        <h1>TEST</h1>
-        <i class="bi bi-0-square-fill"></i>
+    <img src="{{ asset('img/background kereta.jpg') }}" alt="" class="w-25">
 </x-layout>
