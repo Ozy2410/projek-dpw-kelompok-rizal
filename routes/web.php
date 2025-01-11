@@ -4,15 +4,11 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-<<<<<<< HEAD
-    return view('welcome');
+    return view('home');
 });
 
-Route::get('/dashboard_pengguna', function (){
-    return view('dashboard_pengguna');
-=======
-    return view('home');
->>>>>>> d52aab202cacdd22ebf22b7b059e143355b5003f
+Route::get('/dashboard-pengguna', function () {
+    return view('dashboard.pengguna');
 });
 
 Route::controller(UserController::class)->group(function () {
