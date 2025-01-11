@@ -27,9 +27,9 @@
                         <td>Sofyan Faiz</td>
                         <td>sofyan.faiz@gmail.com</td>
                         <td>
-                            <button class="btn btn-warning" type="button" data-bs-toggle="modal"
+                            <button class="btn btn-outline-warning" type="button" data-bs-toggle="modal"
                                 data-bs-target="#editPengguna">Edit</button>
-                            <button class="btn btn-danger" type="button" data-bs-toggle="modal"
+                            <button class="btn btn-outline-danger" type="button" data-bs-toggle="modal"
                                 data-bs-target="#hapusPengguna">Hapus</button>
                         </td>
                     </tr>
