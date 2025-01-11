@@ -12,6 +12,10 @@ Route::get('/dashboard-pengguna', function () {
     return view('dashboard.pengguna');
 });
 
+Route::get('/dashboard-booking', function () {
+    return view('dashboard.booking');
+});
+
 Route::controller(UserController::class)->group(function () {
     Route::get('/login', 'login')->name('login');
     Route::post('/login', 'login')->name('login.post');
