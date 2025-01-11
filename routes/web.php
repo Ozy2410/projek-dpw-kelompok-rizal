@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\TrainController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
+
+Route::controller(MainController::class)->group(function () {
+    Route::get('/', 'index')->name('home');
 });
 
 Route::controller(UserController::class)->group(function () {

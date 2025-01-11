@@ -14,7 +14,7 @@
                 <h3 class="text-white mt-5 pt-5">Hai, Kamu!</h3>
                 <p class="fs-3 text-white">Mau kemana kita?</p>
             </div>
-            <div class="card bg-white shadow-lg position-fixed" style="width: 85vw;">
+            <div class="card bg-white shadow-lg position-absolute" style="width: 85vw;">
                 <div class="card-body">
                     <form action="" method="post">
                         @csrf
@@ -64,5 +64,85 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="container mt-5 pt-5">
+        <div class="row">
+            @if ($trains->isEmpty())
+                <div class="col">
+                    <p class="text-center">Tidak ada kereta yang tersedia.</p>
+                </div>
+            @else
+                @foreach ($trains as $train)
+                    <div class="col-md-6 mb-3">
+                        <div class="card shadow-xl">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4 d-flex align-items-center">
+                                        <div class="d-block">
+                                            <a href="{{ url('pilih-kursi/' . $train->id_kereta) }}"
+                                                class="text-primary fs-4 text-decoration-none fw-bold">{{ $train->nama_kereta }}</a>
+                                            <p>Kelas Ekonomi</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 d-flex align-items-center">
+                                        <div class="d-block">
+                                            <div class="d-flex gap-4">
+                                                <div class="d-block">
+                                                    <p class="p-0 m-0 fs-6 text-secondary">
+                                                        {{ \Carbon\Carbon::parse($train->waktu_keberangkatan)->format('d F') }}
+                                                    </p>
+                                                    <p class="p-0 m-0 fs-4 fw-semibold text-dark">
+                                                        {{ \Carbon\Carbon::parse($train->waktu_keberangkatan)->format('H:i') }}
+                                                        <i class="bi bi-train-front fs-5 text-primary"></i>
+                                                    </p>
+                                                    <p class="text-secondary">
+                                                        {{ $train->asal_kota }}
+                                                    </p>
+                                                </div>
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="d-flex align-items-center">
+                                                        ━
+                                                        <span class="mx-2">
+                                                            {{ \Carbon\Carbon::parse($train->waktu_keberangkatan)->diffInHours(\Carbon\Carbon::parse($train->waktu_tiba)) }}
+                                                            jam
+                                                        </span>
+                                                        ━
+                                                    </div>
+                                                </div>
+                                                <div class="d-block">
+                                                    <div class="d-block">
+                                                        <div class="d-flex justify-content-end">
+                                                            <span class="p-0 m-0 fs-6 text-secondary">
+                                                                {{ \Carbon\Carbon::parse($train->waktu_tiba)->format('d F') }}
+                                                            </span>
+                                                        </div>
+                                                        <div class="d-flex justify-content-end">
+                                                            <p class="p-0 m-0 fs-4 fw-semibold text-dark">
+                                                                <i class="bi bi-train-front fs-5 text-danger"></i>&nbsp;
+                                                                {{ \Carbon\Carbon::parse($train->waktu_tiba)->format('H:i') }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-end">
+                                                        <p class="text-secondary">
+                                                            {{ $train->kota_tujuan }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-end">
+                                                <a href="{{ url('pilih-kursi/' . $train->id_kereta) }}"
+                                                    class="btn btn-outline-primary">Pilih</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+        </div>
+
     </div>
 </x-layout>
