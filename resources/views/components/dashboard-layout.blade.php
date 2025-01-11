@@ -31,22 +31,39 @@
                     </a>
                     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active py-3 border-bottom rounded-0" aria-current="page"
-                                data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Home"
-                                data-bs-original-title="Home">
-                                <i class="bi bi-house-door fs-5"></i>
+                            <a href="{{ url('dashboard-pengguna') }}"
+                                class="nav-link {{ Request::is('dashboard-pengguna') ? 'active' : '' }} py-3 border-bottom rounded-0"
+                                aria-current="page" data-bs-toggle="tooltip" data-bs-placement="right"
+                                aria-label="Dashboard Pengguna" data-bs-original-title="Dashboard Pengguna">
+                                @if (Request::is('dashboard-pengguna'))
+                                    <i class="bi bi-person-fill-gear fs-5"></i>
+                                @else
+                                    <i class="bi bi-person-gear fs-5"></i>
+                                @endif
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip"
-                                data-bs-placement="right" aria-label="Tickets" data-bs-original-title="Tickets">
-                                <i class="bi bi-ticket-perforated fs-5"></i>
+                        <li class="nav-item">
+                            <a href="{{ url('dashboard-kereta') }}"
+                                class="nav-link {{ Request::is('dashboard-kereta') ? 'active' : '' }} py-3 border-bottom rounded-0"
+                                aria-current="page" data-bs-toggle="tooltip" data-bs-placement="right"
+                                aria-label="Dashboard Kereta" data-bs-original-title="Dashboard Kereta">
+                                @if (Request::is('dashboard-kereta'))
+                                    <i class="bi bi-train-front-fill fs-5"></i>
+                                @else
+                                    <i class="bi bi-train-front fs-5"></i>
+                                @endif
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip"
-                                data-bs-placement="right" aria-label="Login" data-bs-original-title="Login">
-                                <i class="bi bi-box-arrow-in-right fs-5"></i>
+                        <li class="nav-item">
+                            <a href="{{ url('dashboard-booking') }}"
+                                class="nav-link {{ Request::is('dashboard-booking') ? 'active' : '' }} py-3 border-bottom rounded-0"
+                                aria-current="page" data-bs-toggle="tooltip" data-bs-placement="right"
+                                aria-label="Dashboard Booking" data-bs-original-title="Dashboard Booking">
+                                @if (Request::is('dashboard-booking'))
+                                    <i class="bi bi-ticket-perforated-fill"></i>
+                                    @else
+                                    <i class="bi bi-ticket-perforated"></i>
+                                @endif
                             </a>
                         </li>
                     </ul>

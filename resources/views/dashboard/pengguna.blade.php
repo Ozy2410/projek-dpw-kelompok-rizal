@@ -1,4 +1,4 @@
-<x-layout>
+<x-dashboard-layout>
     <div class="container mt-5">
         <h1 class="mb-4">Dashboard Pengguna</h1>
         <div class="d-flex align-items-center mb-4">
@@ -129,4 +129,4 @@
             </div>
         </div>
     </div>
-</x-layout>
+</x-dashboard-layout>
