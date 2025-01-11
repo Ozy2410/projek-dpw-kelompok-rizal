@@ -2,19 +2,15 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        DB::table('users')->insert([
+        $users = [
             [
                 'nama' => 'Admin User',
                 'email' => 'admin@example.com',
@@ -36,7 +32,14 @@ class UserSeeder extends Seeder
                 'role' => 'member',
                 'created_at' => now(),
             ],
-            // Add 7 more entries as needed
-        ]);
+            // Tambahkan 7 entri lainnya sesuai kebutuhan
+        ];
+
+        foreach ($users as $user) {
+            User::updateOrCreate(
+                ['email' => $user['email']],
+                $user
+            );
+        }
     }
 }
