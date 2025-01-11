@@ -7,8 +7,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function (){
-    return view('home');
+Route::get('/milih_kursi', function (){
+    return view('milih_kursi');
 });
 
 Route::controller(UserController::class)->group(function () {
