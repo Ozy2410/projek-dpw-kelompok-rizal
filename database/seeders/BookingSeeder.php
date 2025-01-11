@@ -17,12 +17,14 @@ class BookingSeeder extends Seeder
             [
                 'id_user' => 1,
                 'id_kereta' => 1,
-                'nomor_kursi' => 'A1'
+                'nomor_kursi' => 'A1',
+                'gerbong' => 'A'
             ],
             [
                 'id_user' => 2,
                 'id_kereta' => 2,
-                'nomor_kursi' => 'B2'
+                'nomor_kursi' => 'B2',
+                'gerbong' => 'B'
             ],
             // Add 8 more entries as needed
         ]);
