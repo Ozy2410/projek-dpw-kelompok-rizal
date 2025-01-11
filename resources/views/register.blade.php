@@ -19,18 +19,26 @@
     <div class="d-flex flex-column justify-content-center align-items-center ">
         <form class="justify-content-center shadow p-3" style="margin: 5px; width: 25vw">
             <div class="form-floating mb-3">
+                <input name="nama" class="form-control" id="nama" placeholder="Nama Lengkap" type="text">
                 <label class="form-label">Nama Lengkap</label>
-                <input class="form-control"type="text">
             </div>
 
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input name="email" type="email" class="form-control" id="floatingInput"
+                    placeholder="name@example.com">
                 <label for="floatingInput">Email</label>
             </div>
 
-            <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <div class="form-floating mb-3">
+                <input name="password" type="password" class="form-control" id="floatingPassword"
+                    placeholder="Password">
                 <label for="floatingPassword">Password</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input name="ulangiPassword" type="password" class="form-control" id="ulangiPassword"
+                    placeholder="Password">
+                <label for="ulangiPassword">Ulangi Password</label>
             </div>
 
             <button type="submit" class="btn btn-primary w-100 mt-3">Submit</button>
