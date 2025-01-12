@@ -56,7 +56,14 @@
                                 class="rounded-circle">
                         </a>
                         <ul class="dropdown-menu text-small shadow">
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                            <form action="{{ url('logout') }}" method="post">
+                                @csrf
+                                <li>
+                                    <button type="submit" class="dropdown-item">
+                                        Sign out
+                                    </button>
+                                </li>
+                            </form>
                         </ul>
                     </div>
                 </div>

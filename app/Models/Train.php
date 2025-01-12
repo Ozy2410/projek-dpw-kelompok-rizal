@@ -21,4 +21,9 @@ class Train extends Model
     ];
 
     public $timestamps = true;
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'id_kereta');
+    }
 }

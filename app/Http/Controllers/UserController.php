@@ -58,33 +58,39 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
     }
 
-    public function login()
+    public function login(Request $request)
     {
-        if (request()->isMethod('post')) {
-            $email = request('email');
-            $password = request('password');
-            $user = User::where('email', $email)->first();
-            if ($user && $user->password == $password) {
-                Auth::login($user);
-                return redirect()->route('home');
+        if ($request->isMethod('post')) {
+            $credentials = $request->validate([
+                'email' => ['required', 'email'],
+                'password' => ['required'],
+            ]);
+
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+
+                return redirect()->intended('/');
             }
 
-            return redirect()->back();
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ])->onlyInput('email');
         }
 
         return view('login');
     }
 
-    public function register()
+    public function register(Request $request)
     {
-        if (request()->isMethod('post')) {
-            $data = request()->validate([
-                'name' => 'required',
-                'email' => 'required|email',
-                'password' => 'required|min:8|confirmed',
+        if ($request->isMethod('post')) {
+            $data = $request->validate([
+                'nama' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|min:8|confirmed',
             ]);
 
-            $data['password'] = bcrypt($data['password']);
+            $data['password'] = Hash::make($data['password']);
+            $data['role'] = 'member'; // Default role
 
             $user = User::create($data);
 
@@ -94,5 +100,16 @@ class UserController extends Controller
         }
 
         return view('register');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
     }
 }

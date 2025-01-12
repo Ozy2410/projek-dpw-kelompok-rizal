@@ -36,7 +36,7 @@
                                         class="form-control border-dark-subtle">
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-3">
                                 <label class="fw-bold text-secondary mb-2" for="tanggal_berangkat">Tanggal
                                     Berangkat</label>
                                 <div class="input-group">
@@ -54,9 +54,10 @@
                                         class="form-control border-dark-subtle">
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-1">
                                 <div class="d-flex align-items-center justify-content-center">
-                                    <button type="submit" class="btn btn-primary mt-4">Cari Kereta</button>
+                                    <button type="submit" class="btn btn-primary mt-3"><i
+                                            class="bi bi-search fs-3 p-2"></i></button>
                                 </div>
                             </div>
                         </div>

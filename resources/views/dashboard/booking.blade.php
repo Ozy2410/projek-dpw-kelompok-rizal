@@ -1,6 +1,6 @@
 <x-dashboard-layout title="Dashboard Booking | Lagoa Express">
     <div class="container mt-5">
-        <h1 class="mb-4">Dashboard Booking</h1>
+        <h1 class="mb-4">Dashboard Booking Tiket</h1>
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}

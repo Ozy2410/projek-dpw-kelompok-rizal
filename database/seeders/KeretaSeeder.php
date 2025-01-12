@@ -13,22 +13,23 @@ class KeretaSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('kereta')->insert([
-            [
-                'nama_kereta' => 'Argo Bromo',
-                'asal_kota' => 'Jakarta',
-                'kota_tujuan' => 'Surabaya',
-                'waktu_keberangkatan' => now(),
-                'waktu_tiba' => now()->addHours(9)
-            ],
-            [
-                'nama_kereta' => 'Taksaka',
-                'asal_kota' => 'Yogyakarta',
-                'kota_tujuan' => 'Jakarta',
-                'waktu_keberangkatan' => now(),
-                'waktu_tiba' => now()->addHours(6)
-            ],
-            // Add 8 more entries as needed
-        ]);
+        $data = [];
+        $namaKereta = ['Argo Bromo', 'Taksaka', 'Gajayana', 'Malabar', 'Majapahit', 'Argo Wilis', 'Lodaya', 'Mutiara Timur', 'Serayu', 'Logawa'];
+        $asalKota = ['Jakarta', 'Bandung', 'Surabaya', 'Malang', 'Yogyakarta'];
+        $tujuanKota = ['Semarang', 'Solo', 'Blitar', 'Jember', 'Kediri'];
+
+        for ($i = 1; $i <= 50; $i++) {
+            $data[] = [
+                'nama_kereta' => $namaKereta[array_rand($namaKereta)] . " $i",
+                'asal_kota' => $asalKota[array_rand($asalKota)],
+                'kota_tujuan' => $tujuanKota[array_rand($tujuanKota)],
+                'waktu_keberangkatan' => now()->addHours(rand(1, 48)),
+                'waktu_tiba' => now()->addHours(rand(49, 96)),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+
+        DB::table('kereta')->insert($data);
     }
 }
