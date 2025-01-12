@@ -69,10 +69,25 @@
                                 <div class="row">
                                     <div class="col-md-4 d-flex align-items-center">
                                         <div class="d-block">
-                                            <a href="#jumlahPenumpang{{ $train->id_kereta }}"
-                                                class="text-primary fs-4 text-decoration-none fw-bold"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#jumlahPenumpang{{ $train->id_kereta }}">{{ $train->nama_kereta }}</a>
+                                            @admin
+                                                <p class="text-primary fs-4 text-decoration-none fw-bold">
+                                                    {{ $train->nama_kereta }}
+                                                </p>
+                                            @endadmin
+                                            @member
+                                                <a href="#jumlahPenumpang{{ $train->id_kereta }}"
+                                                    class="text-primary fs-4 text-decoration-none fw-bold"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#jumlahPenumpang{{ $train->id_kereta }}">
+                                                    {{ $train->nama_kereta }}
+                                                </a>
+                                            @endmember
+                                            @guest
+                                                <a href="{{ route('login') }}"
+                                                    class="text-primary fs-4 text-decoration-none fw-bold">
+                                                    {{ $train->nama_kereta }}
+                                                </a>
+                                            @endguest
                                             <p>Kelas Ekonomi</p>
                                         </div>
                                     </div>
@@ -123,10 +138,17 @@
                                                 </div>
                                             </div>
                                             <div class="d-flex justify-content-end">
-                                                <button class="btn btn-outline-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#jumlahPenumpang{{ $train->id_kereta }}">
-                                                    Pilih
-                                                </button>
+                                                @member
+                                                    <button class="btn btn-outline-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#jumlahPenumpang{{ $train->id_kereta }}">
+                                                        Pilih
+                                                    </button>
+                                                @endmember
+                                                @guest
+                                                    <a href="{{ route('login') }}" class="btn btn-outline-primary">
+                                                        Pilih
+                                                    </a>
+                                                @endguest
                                             </div>
                                         </div>
                                     </div>
@@ -149,8 +171,8 @@
                                     <form action="{{ route('pilih-kursi', $train->id_kereta) }}" method="GET">
                                         @csrf
                                         <div class="form-floating mb-3">
-                                            <input type="number" class="form-control rounded-3" name="jumlah_penumpang"
-                                                placeholder="Jumlah Penumpang" required>
+                                            <input type="number" class="form-control rounded-3"
+                                                name="jumlah_penumpang" placeholder="Jumlah Penumpang" required>
                                             <label for="floatingInput">Jumlah Penumpang</label>
                                         </div>
                                         <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">
