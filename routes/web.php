@@ -20,8 +20,11 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [UserController::class, 'register'])->name('register.post');
 });
 
+Route::post('/search-trains', [MainController::class, 'searchTrains'])->name('search-trains');
+
 Route::middleware("member")->group(function () {
     Route::get('/pilih-kursi/{id}', [MainController::class, 'pilihKursi'])->name('pilih-kursi');
+    Route::post('/pilih-kursi/{id}', [MainController::class, 'storePilihKursi'])->name('store-pilih-kursi');
     Route::get('tiket', [MainController::class, 'tiket'])->name('tiket');
 });
 

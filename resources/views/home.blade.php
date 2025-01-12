@@ -16,7 +16,7 @@
             </div>
             <div class="card bg-white shadow-lg position-absolute" style="width: 85vw;">
                 <div class="card-body">
-                    <form action="" method="post">
+                    <form action="{{ route('search-trains') }}" method="post">
                         @csrf
                         @method('post')
                         <div class="row">
@@ -45,20 +45,9 @@
                                         class="form-control border-dark-subtle">
                                 </div>
                             </div>
-                            <div class="col-2">
-                                <label class="fw-bold text-secondary mb-2" for="jumlah_penumpang">Jumlah
-                                    Penumpang</label>
-                                <div class="input-group">
-                                    <i class="bi bi-people input-group-text fs-5 text-primary"></i>
-                                    <input type="number" id="jumlah_penumpang" name="jumlah_penumpang"
-                                        class="form-control border-dark-subtle">
-                                </div>
-                            </div>
-                            <div class="col-1">
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <button type="submit" class="btn btn-primary mt-3"><i
-                                            class="bi bi-search fs-3 p-2"></i></button>
-                                </div>
+                            <div class="col-3">
+                                <button type="submit" class="btn btn-primary mt-3"><i
+                                        class="bi bi-search fs-5 pe-1"></i> Cari Kereta</button>
                             </div>
                         </div>
                     </form>
@@ -80,8 +69,10 @@
                                 <div class="row">
                                     <div class="col-md-4 d-flex align-items-center">
                                         <div class="d-block">
-                                            <a href="{{ url('pilih-kursi/' . $train->id_kereta) }}"
-                                                class="text-primary fs-4 text-decoration-none fw-bold">{{ $train->nama_kereta }}</a>
+                                            <a href="#jumlahPenumpang{{ $train->id_kereta }}"
+                                                class="text-primary fs-4 text-decoration-none fw-bold"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#jumlahPenumpang{{ $train->id_kereta }}">{{ $train->nama_kereta }}</a>
                                             <p>Kelas Ekonomi</p>
                                         </div>
                                     </div>
@@ -132,11 +123,40 @@
                                                 </div>
                                             </div>
                                             <div class="d-flex justify-content-end">
-                                                <a href="{{ url('pilih-kursi/' . $train->id_kereta) }}"
-                                                    class="btn btn-outline-primary">Pilih</a>
+                                                <button class="btn btn-outline-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#jumlahPenumpang{{ $train->id_kereta }}">
+                                                    Pilih
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade p-4 py-md-5" tabindex="-1" id="jumlahPenumpang{{ $train->id_kereta }}">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content rounded-4 shadow">
+                                <div class="modal-header p-5 pb-4 border-bottom-0">
+                                    <h1 class="fw-bold mb-0 fs-2">Mau bawa berapa penumpang?</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+
+                                <div class="modal-body p-5 pt-0">
+                                    <form action="{{ route('pilih-kursi', $train->id_kereta) }}" method="GET">
+                                        @csrf
+                                        <div class="form-floating mb-3">
+                                            <input type="number" class="form-control rounded-3" name="jumlah_penumpang"
+                                                placeholder="Jumlah Penumpang" required>
+                                            <label for="floatingInput">Jumlah Penumpang</label>
+                                        </div>
+                                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">
+                                            Konfirmasi
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

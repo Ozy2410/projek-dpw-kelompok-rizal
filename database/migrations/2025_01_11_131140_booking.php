@@ -18,6 +18,8 @@ return new class extends Migration
 
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
             $table->foreign('id_kereta')->references('id_kereta')->on('kereta')->onDelete('cascade');
+
+            $table->unique(['id_kereta', 'nomor_kursi']); // Constraint unik untuk mencegah duplikasi kursi
         });
     }
 
