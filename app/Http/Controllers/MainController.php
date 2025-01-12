@@ -18,7 +18,11 @@ class MainController extends Controller
 
     public function tiket()
     {
-        $bookings = Booking::where('id_user', Auth::id())->with('kereta')->get();
+        $bookings = Booking::where('id_user', Auth::id())
+            ->with('kereta')
+            ->orderBy('id_booking', 'desc')
+            ->get();
+
         return view('tiket', compact('bookings'));
     }
 

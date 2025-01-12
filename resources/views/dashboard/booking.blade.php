@@ -13,7 +13,7 @@
         @endif
         <div class="d-flex align-items-center mb-4">
             <div class="border border-secondary rounded-pill px-3 py-2 me-3">
-                <span class="fw-bold"> Total Booking Tiket</span>
+                <span class="fw-bold"> Total Pembelian Tiket</span>
                 <span class="ms-2">{{ $bookings->count() }} Orang</span>
             </div>
             <button class="btn btn-primary rounded-none" type="button" data-bs-toggle="modal"

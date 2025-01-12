@@ -8,7 +8,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, 'index'])->name('home');
-Route::get('/list', function(){
+Route::post('/search-trains', [MainController::class, 'searchTrains'])->name('search-trains');
+Route::get('/list', function () {
     return view('ticketlist');
 })->name('home');
 
@@ -23,7 +24,6 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [UserController::class, 'register'])->name('register.post');
 });
 
-Route::post('/search-trains', [MainController::class, 'searchTrains'])->name('search-trains');
 
 Route::middleware("member")->group(function () {
     Route::get('/pilih-kursi/{id}', [MainController::class, 'pilihKursi'])->name('pilih-kursi');
