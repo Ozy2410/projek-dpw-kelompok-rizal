@@ -1,6 +1,6 @@
 <x-layout title="Register | Lagoa Express">
     <div class="d-flex justify-content-center align-items-center">
-        <div class=" d-flex flex-column justify-content-center align-items-center"
+        <div class=" flex-column justify-content-center align-items-center d-none d-md-flex"
             style="background: #00000000;width: 456px;height: 660px;color: var(--bs-emphasis-color);">
             <img src="{{ URL::asset('img/logo.png') }}" class="me-auto" width="100" height="80"
                 style="height: 250px;width: 250px;">
@@ -9,7 +9,7 @@
         </div>
         <div class="d-flex flex-column justify-content-center align-items-center ">
             <form method="POST" action="{{ route('register.post') }}" class="justify-content-center shadow p-3"
-                style="margin: 5px; width: 25vw">
+                style="margin: 5px; min-width: 25vw; max-width: 100vw">
                 @csrf
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama Lengkap</label>
@@ -42,7 +42,7 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-                
+
                 <button type="submit" class="btn btn-primary w-100 mt-3">Submit</button>
 
                 <hr>

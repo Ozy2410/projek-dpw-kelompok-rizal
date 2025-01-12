@@ -1,8 +1,7 @@
 <x-layout title="Login | Lagoa Express">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <div class="login-container">
-        <div class="left-section">
+        <div class="left-section d-none d-md-block">
             <img src="{{ asset('img/logo.png') }}" alt="Lagoa Express Logo" class="logo">
             <h1>Langsung masuk aja!</h1>
             <p>Biar bisa lanjut make LAGOA EXPRESS</p>

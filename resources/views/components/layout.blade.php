@@ -1,7 +1,8 @@
 <x-main title="{{ $title ?? 'Lagoa Express' }}">
+
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-auto bg-light sticky-top">
+            <div class="d-none d-md-block col-sm-auto position-fixed bg-light sticky-top min-vh-100">
                 <div class="d-flex flex-column flex-shrink-0 bg-body-tertiary">
                     <a href="/"
                         class="d-flex justify-content-center align-items-center link-body-emphasis text-decoration-none mb-3"
@@ -79,7 +80,66 @@
                     @endauth
                 </div>
             </div>
-            <div class="col p-0 min-vh-100">
+
+            <!-- Navbar for tablet and smaller screens -->
+            <nav class="navbar navbar-expand-md navbar-light bg-light d-md-none sticky-top position-sticky">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">
+                        <img src="{{ asset('img/logo lagoa express.png') }}" width="32" height="32"
+                            alt="Lagoa Express">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link {{ Request::is('/') ? 'active' : '' }}"
+                                    href="{{ url('/') }}">Home</a>
+                            </li>
+                            @member
+                                <li class="nav-item">
+                                    <a class="nav-link {{ Request::is('tiket') ? 'active' : '' }}"
+                                        href="{{ url('tiket') }}">Tickets</a>
+                                </li>
+                            @endmember
+                            @admin
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('dashboard-pengguna') }}">Dashboard Pengguna</a>
+                                </li>
+                            @endadmin
+                            @guest
+                                <li class="nav-item">
+                                    <a class="nav-link {{ Request::is('login') || Request::is('register') ? 'active' : '' }}"
+                                        href="{{ route('login') }}">Login</a>
+                                </li>
+                            @endguest
+                        </ul>
+                        @auth
+                            <div class="dropdown">
+                                <a href="#"
+                                    class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="{{ asset('img/pfp.jpg') }}" alt="mdo" width="32" height="32"
+                                        class="rounded-circle">
+                                </a>
+                                <ul class="dropdown-menu text-small shadow">
+                                    <form action="{{ url('logout') }}" method="post">
+                                        @csrf
+                                        <li>
+                                            <button type="submit" class="dropdown-item">
+                                                Sign out
+                                            </button>
+                                        </li>
+                                    </form>
+                                </ul>
+                            </div>
+                        @endauth
+                    </div>
+                </div>
+            </nav>
+            <div class="col p-0 min-vh-100" style="margin-left: 5vw">
                 <!-- content -->
                 {{ $slot }}
             </div>
